@@ -1,5 +1,5 @@
 alter table customer
-	alter column customer_id type smallint;
+	alter column customer_id type int;
 	
 alter table salesperson
 	alter column sales_id type smallint;
@@ -14,13 +14,25 @@ alter table mechanics
 	alter column mechanic_id type smallint;
 	
 alter table invoice
-	alter column invoice_id type smallint,
-	alter column customer_id type smallint,
-	alter column vin type smallint,
-	alter column sales_id type smallint;
+	drop column customer_id,
+	add column customer_id integer [],
+	drop column vin,
+	add column vin integer [],
+	drop column sales_id,
+	add column sales_id integer [];
 	
 alter table service_ticket
 	alter column ticket_id type smallint,
 	add column vin smallint references cars(vin),
 	add column part_id smallint references parts(part_id),
 	add column mechanic_id smallint references mechanics(mechanic_id);
+	
+alter table service_ticket 
+	drop column part_id,
+	add column part_id  integer [],
+	drop column mechanic_id,
+	add column mechanic_id  integer [];
+
+
+
+);
